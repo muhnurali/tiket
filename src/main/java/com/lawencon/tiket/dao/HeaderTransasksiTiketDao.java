@@ -1,7 +1,8 @@
 package com.lawencon.tiket.dao;
 
+import com.lawencon.tiket.model.HeaderTransasksiTiket;
 
 public interface HeaderTransasksiTiketDao {
-	abstract void tambahTransaksiHeader(String username, String password) throws Exception; 
+	abstract HeaderTransasksiTiket tambahTransaksiHeader(HeaderTransasksiTiket header) throws Exception; 
 
 }

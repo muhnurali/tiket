@@ -16,15 +16,10 @@ public class HeaderTransasksiTiketServiceImpl implements HeaderTransasksiTiketSe
 	HeaderTransasksiTiketDao headerTransasksiTiketDao;
 
 	@Override
-	public void tambahTransaksiHeader(String username, String password)
-			throws Exception {
-		headerTransasksiTiketDao.tambahTransaksiHeader(username, password);
+	public HeaderTransasksiTiket tambahTransaksiHeader(HeaderTransasksiTiket header) throws Exception {
+		return headerTransasksiTiketDao.tambahTransaksiHeader(header);
 	}
 
-	@Override
-	public HeaderTransasksiTiket tampilkan() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

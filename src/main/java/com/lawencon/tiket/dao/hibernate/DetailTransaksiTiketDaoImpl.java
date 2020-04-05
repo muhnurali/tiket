@@ -13,7 +13,7 @@ import com.lawencon.tiket.model.DetailTransaksiTiket;
 public class DetailTransaksiTiketDaoImpl extends BaseHibernate implements DetailTransaksiTiketDao {
 
 	@Override
-	public void tambahTransaksiDetail(DetailTransaksiTiket detailTransaksi, String username, String password)
+	public void tambahTransaksiDetail(DetailTransaksiTiket detailTransaksi)
 			throws Exception {
 		em.persist(detailTransaksi);
 	}
