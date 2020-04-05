@@ -18,26 +18,38 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerDao customerDao;
 	
 	@Override
-	public String tambahCustomer(Customer customer) throws Exception {
+	public String tambahCustomer(Customer customer, String username, String password) throws Exception {
+		customerDao.cekCustomer(username, password);
 		customerDao.tambahCustomer(customer);
 		return "Berhasil Tambah Customer";
 	}
 
 	@Override
-	public List<Customer> tampilCustomer() throws Exception {
+	public List<Customer> tampilCustomer(String username, String password) throws Exception {
+		customerDao.cekCustomer(username, password);
 		return customerDao.tampilCustomer();
 	}
 
 	@Override
-	public String ubahCustomer(Customer customer) throws Exception {
+	public String ubahCustomer(Customer customer, String username, String password) throws Exception {
+		customerDao.cekCustomer(username, password);
 		customerDao.ubahCustomer(customer);
 		return "Berhasil Ubah Customer";
 	}
 
 	@Override
-	public String hapusCustomer(Customer customer) throws Exception {
-		customerDao.hapusCustomer(customer);
+	public String hapusCustomer(Integer id, String username, String password) throws Exception {
+		customerDao.cekCustomer(username, password);
+		customerDao.hapusCustomer(id);
 		return "Berhasil Hapus Customer";
+	}
+
+	@Override
+	public void cekCustomer(String username, String password) throws Exception {
+		Customer customer = customerDao.cekCustomer(username, password);
+		if (!customer.getUsername().equals(username) && !customer.getPassword().equals(password)) {
+			throw new Exception();
+		}
 	}
 
 }

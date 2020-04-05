@@ -10,7 +10,7 @@ import com.lawencon.tiket.dao.CustomerDao;
 import com.lawencon.tiket.model.Customer;
 
 @Repository("customer_hibernate")
-public class CustomerDaoImpl extends CustomRevo implements CustomerDao {
+public class CustomerDaoImpl extends BaseHibernate implements CustomerDao {
 
 
 	@SuppressWarnings("unchecked")
@@ -26,9 +26,11 @@ public class CustomerDaoImpl extends CustomRevo implements CustomerDao {
 	}
 
 	@Override
-	public void hapusCustomer(Customer customer) throws Exception {
+	public void hapusCustomer(Integer id) throws Exception {
+		Query q = em.createQuery(" from Customer where id = :idParam");
+		q.setParameter("idParam", id);
 		Customer temp = new Customer();
-		temp = getById(customer.getId());
+		temp = (Customer) q.getSingleResult();
 		em.remove(temp);
 	}
 
@@ -38,18 +40,11 @@ public class CustomerDaoImpl extends CustomRevo implements CustomerDao {
 	}
 
 	@Override
-	public Customer getById(Integer id) throws Exception {
-		Query q = em.createQuery(" from Customer where id = :idParam");
-		q.setParameter("idParam", id);
-		return (Customer) q.getResultList();
-	}
-
-	@Override
 	public Customer cekCustomer(String username, String password) throws Exception {
 		Query q = em.createQuery("from Customer where username = :username and password = :password");
 		q.setParameter("username", username);
 		q.setParameter("password", password);
-		return (Customer)q.getResultList();
+		return (Customer)q.getSingleResult();
 	}
 
 }

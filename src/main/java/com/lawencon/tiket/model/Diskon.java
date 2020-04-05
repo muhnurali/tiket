@@ -36,7 +36,5 @@ public class Diskon {
 	}
 	public void setJumlahDiskon(int jumlahDiskon) {
 		this.jumlahDiskon = jumlahDiskon;
-	}
-	
-	
+	}	
 }

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.lawencon.tiket.dao.DetailTransaksiTiketDao;
 import com.lawencon.tiket.model.DetailTransaksiTiket;
 
-@Repository
-public class DetailTransaksiTiketDaoImpl extends CustomRevo implements DetailTransaksiTiketDao {
+@Repository("detail_hibernate")
+public class DetailTransaksiTiketDaoImpl extends BaseHibernate implements DetailTransaksiTiketDao {
 
 	@Override
 	public void tambahTransaksiDetail(DetailTransaksiTiket detailTransaksi, String username, String password)

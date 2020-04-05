@@ -7,8 +7,6 @@ public interface CustomerDao {
 	abstract void tambahCustomer(Customer customer) throws Exception;
 	abstract List<Customer> tampilCustomer() throws Exception;
 	abstract void ubahCustomer(Customer customer) throws Exception;
-	abstract void hapusCustomer(Customer customer) throws Exception;
-	abstract Customer getById(Integer id) throws Exception;
+	abstract void hapusCustomer(Integer id) throws Exception;
 	abstract Customer cekCustomer(String username, String password) throws Exception;
-
 }

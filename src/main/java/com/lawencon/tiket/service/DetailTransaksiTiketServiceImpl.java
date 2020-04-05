@@ -3,6 +3,7 @@ package com.lawencon.tiket.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +19,14 @@ import com.lawencon.tiket.model.HeaderTransasksiTiket;
 public class DetailTransaksiTiketServiceImpl implements DetailTransaksiTiketService {
 
 	@Autowired
+	@Qualifier("detail_hibernate")
 	DetailTransaksiTiketDao detail;
 	
 	@Autowired
 	HeaderTransasksiTiketDao header;
 	
 	@Autowired
+	@Qualifier("customer_jpa")
 	CustomerDao customerDao;
 	
 	@Override
