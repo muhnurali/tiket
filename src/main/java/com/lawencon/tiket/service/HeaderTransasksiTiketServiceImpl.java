@@ -20,6 +20,11 @@ public class HeaderTransasksiTiketServiceImpl implements HeaderTransasksiTiketSe
 		return headerTransasksiTiketDao.tambahTransaksiHeader(header);
 	}
 
+	@Override
+	public void totalTransaksiHeader(HeaderTransasksiTiket header) throws Exception {
+		headerTransasksiTiketDao.totalTransaksiHeader(header);
+	}
+
 
 
 }

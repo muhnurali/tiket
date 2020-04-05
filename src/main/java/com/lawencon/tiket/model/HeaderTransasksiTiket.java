@@ -1,5 +1,6 @@
 package com.lawencon.tiket.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,9 @@ public class HeaderTransasksiTiket {
 	@JoinColumn(name = "cust_id", nullable = false)
 	private Customer customer;
 
+	@Column(nullable = true)
+	private Integer jumlahBayar;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -32,5 +36,13 @@ public class HeaderTransasksiTiket {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Integer getJumlahBayar() {
+		return jumlahBayar;
+	}
+
+	public void setJumlahBayar(Integer jumlahBayar) {
+		this.jumlahBayar = jumlahBayar;
 	}
 }

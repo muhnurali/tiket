@@ -16,6 +16,11 @@ public class HeaderTransasksiTiketDaoImpl implements HeaderTransasksiTiketDao {
 		return headerRevo.save(header);
 	}
 
+	@Override
+	public HeaderTransasksiTiket totalTransaksiHeader(HeaderTransasksiTiket header) throws Exception {
+		return headerRevo.save(header);
+	}
+
 	
 
 }

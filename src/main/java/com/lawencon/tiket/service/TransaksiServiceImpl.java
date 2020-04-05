@@ -22,7 +22,7 @@ public class TransaksiServiceImpl implements TransaksiService{
 	CustomerService cs;
 	
 	@Override
-	public void simpanTransaksi(HeaderDetail headerDetail, String username, String password) throws Exception {
+	public HeaderDetail simpanTransaksi(HeaderDetail headerDetail, String username, String password) throws Exception {
 		cs.cekCustomer(username, password);
 		HeaderTransasksiTiket headerTiket = header.tambahTransaksiHeader(headerDetail.getHeader());
 		headerDetail.getDetail().forEach(x->{
@@ -34,6 +34,8 @@ public class TransaksiServiceImpl implements TransaksiService{
 				e.printStackTrace();
 			}
 		});
+//		header.totalTransaksiHeader(headerTiket);
+		return headerDetail;
 	}
 
 

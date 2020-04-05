@@ -18,7 +18,7 @@ public class TransasksiController extends BaseController{
 	TransaksiService ts;
 	
 	@PostMapping("/transaksi")
-	public ResponseEntity<String> tambahTransaksi(@RequestBody String content,
+	public ResponseEntity<?> tambahTransaksi(@RequestBody String content,
 			@RequestHeader("Authorization") String authorization) throws Exception {
 		HeaderDetail hd = new HeaderDetail();
 		String[] auth = super.authUser(authorization);
@@ -28,7 +28,8 @@ public class TransasksiController extends BaseController{
 		} catch (Exception e) {
 			return new ResponseEntity<>("Gagal Tambah Transaksi",HttpStatus.BAD_GATEWAY);
 		}
-		return new ResponseEntity<>("Berhasil Tambah Transaksi", HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(hd, HttpStatus.ACCEPTED);
+
 	}	
 	
 }
