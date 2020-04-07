@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(name = "dt_uk", columnNames = {"noKursi", "jk_id"})})
+@Table(uniqueConstraints = {@UniqueConstraint(name = "dt_uk", columnNames = {"noKursi", "jenis_kendaraan_id"})})
 public class DetailTransaksiTiket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +23,15 @@ public class DetailTransaksiTiket {
 	private int noKursi;
 	
 	@ManyToOne
-	@JoinColumn(name = "jk_id", nullable = false)
+	@JoinColumn(name = "jenis_kendaraan_id", nullable = false)
 	private JenisKendaraan jenisKendaraan;
 	
 	@ManyToOne
-	@JoinColumn(name = "dis_id", nullable = true)
+	@JoinColumn(name = "diskon_id", nullable = true)
 	private Diskon diskon;
 	
 	@ManyToOne
-	@JoinColumn(name = "head_t_id", nullable = false)
+	@JoinColumn(name = "head_transaksi_id", nullable = false)
 	private HeaderTransasksiTiket headerTransaksiTiker;
 
 	public Integer getId() {

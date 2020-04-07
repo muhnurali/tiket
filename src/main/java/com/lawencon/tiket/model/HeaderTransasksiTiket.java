@@ -16,7 +16,7 @@ public class HeaderTransasksiTiket {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "cust_id", nullable = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	private Customer customer;
 
 	@Column(nullable = true)

@@ -6,5 +6,4 @@ public interface HeaderTransasksiTiketDao {
 	abstract HeaderTransasksiTiket tambahTransaksiHeader(HeaderTransasksiTiket header) throws Exception; 
 	abstract HeaderTransasksiTiket totalTransaksiHeader(HeaderTransasksiTiket header) throws Exception; 
 
-
 }

@@ -18,6 +18,7 @@ public class HeaderTransasksiTiketDaoImpl extends BaseHibernate implements Heade
 
 	@Override
 	public HeaderTransasksiTiket totalTransaksiHeader(HeaderTransasksiTiket header) throws Exception {
+		//keluarin dulu
 		Query q = em.createQuery("update HeaderTransasksiTiket set jumlahBayar = ("
 				+ "select sum(jk.harga) from DetailTransaksiTiket dt " + 
 				"join JenisKendaraan dt.jenisKendaraan jk " + 

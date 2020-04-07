@@ -13,52 +13,52 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lawencon.tiket.model.Diskon;
 import com.lawencon.tiket.service.DiskonService;
 
+@SuppressWarnings("rawtypes")
 @RestController
 public class DiskonController  extends BaseController {
 
 	@Autowired
 	DiskonService diskonService;
 	
+	Diskon diskon = new Diskon();
+	List<Diskon> list = new ArrayList<>();
+
+	@SuppressWarnings("unchecked")
 	@PostMapping("/diskon")
 	public ResponseEntity<String> tambah(@RequestBody String content, @RequestHeader("Authorization") String authorization) throws Exception {
-		Diskon diskon = new Diskon();
 		String[] auth = super.authUser(authorization);
 		try {
-			diskon = new ObjectMapper().readValue(content, Diskon.class);
-			diskonService.tambahDiskon(diskon, auth[0], auth[1]);
+			diskon = (Diskon) super.readValue(content, Diskon.class);
+			return new ResponseEntity<>(diskonService.tambahDiskon(diskon, auth[0], auth[1]), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Gagal Tambah Diskon",HttpStatus.BAD_GATEWAY);
 		}
-		return new ResponseEntity<>(diskonService.tambahDiskon(diskon, auth[0], auth[1]), HttpStatus.ACCEPTED);
 	}	
 
 	@GetMapping("/diskon")
 	public ResponseEntity<?> tampil(@RequestHeader("Authorization") String authorization) {
-		List<Diskon> list = new ArrayList<>();
 		String[] auth = super.authUser(authorization);
 		try {
 			list = diskonService.tampilDiskon(auth[0], auth[1]);
+			return new ResponseEntity<>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Gagal Menampilkan List Diskon", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
+	@SuppressWarnings("unchecked")
 	@PutMapping("/diskon")
 	public ResponseEntity<String> ubah(@RequestBody String content, @RequestHeader("Authorization") String authorization) throws Exception {
-		Diskon diskon = new Diskon();
 		String[] auth = super.authUser(authorization);
 		try {
-			diskon = new ObjectMapper().readValue(content, Diskon.class);
-			diskonService.ubahDiskon(diskon, auth[0], auth[1]);
+			diskon = (Diskon) super.readValue(content, Diskon.class);
+			return new ResponseEntity<>(diskonService.ubahDiskon(diskon, auth[0], auth[1]), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Gagal Update Diskon", HttpStatus.BAD_GATEWAY);
 		}
-		return new ResponseEntity<>(diskonService.ubahDiskon(diskon, auth[0], auth[1]), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/diskon/{id}")
@@ -66,9 +66,9 @@ public class DiskonController  extends BaseController {
 		String[] auth = super.authUser(authorization);
 		try {
 			diskonService.hapusDiskon(id, auth[0], auth[1]);
+			return new ResponseEntity<>("Berhasil Hapus Diskon", HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Gagal Hapus Diskon", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<>("Berhasil Hapus Diskon", HttpStatus.OK);
 	}
 }

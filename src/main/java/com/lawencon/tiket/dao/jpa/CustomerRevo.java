@@ -6,4 +6,5 @@ import com.lawencon.tiket.model.Customer;
 
 public interface CustomerRevo extends JpaRepository<Customer, Integer>{
 	abstract Customer findByUsernameAndPassword(String username, String password);
+		
 }

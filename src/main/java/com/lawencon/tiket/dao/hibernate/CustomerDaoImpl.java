@@ -16,7 +16,7 @@ public class CustomerDaoImpl extends BaseHibernate implements CustomerDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Customer> tampilCustomer() throws Exception {
-		Query q = em.createQuery("from Customer");
+		Query q = em.createQuery("select c.id, c.nama, c.username from Customer c");
 		return q.getResultList();
 	}
 
